@@ -4,7 +4,9 @@
       "Bash(Get-ChildItem c:\\\\Repos\\\\StaysInVegas\\\\StaysInVegas -Exclude node_modules)",
       "Bash(Select-Object Name, LastWriteTime)",
       "PowerShell(Get-ChildItem \"c:\\\\Repos\\\\StaysInVegas\\\\StaysInVegas\" | Where-Object { $_.Name -ne \"node_modules\" } | Select-Object Name, PSIsContainer)",
-      "PowerShell(cmd /c \"dir c:\\\\Repos\\\\StaysInVegas\\\\StaysInVegas\\\\src /b /s\")"
+      "PowerShell(cmd /c \"dir c:\\\\Repos\\\\StaysInVegas\\\\StaysInVegas\\\\src /b /s\")",
+      "Skill(claude-api)",
+      "Skill(claude-api:*)"
     ]
   }
 }
