@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Anthropic from '@anthropic-ai/sdk';
+import { getNights, formatDate } from '../utils';
 
 const client = new Anthropic({
   apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
@@ -11,16 +12,6 @@ const TRAVELLER_LABELS = {
   'adult-leisure': 'adult leisure travellers',
   family: 'families with children',
 };
-
-function getNights(dateRange) {
-  if (!dateRange?.from || !dateRange?.to) return null;
-  return Math.ceil((dateRange.to - dateRange.from) / (1000 * 60 * 60 * 24));
-}
-
-function formatDate(date) {
-  if (!date) return '';
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
 
 function ActivityCard({ title, description }) {
   return (

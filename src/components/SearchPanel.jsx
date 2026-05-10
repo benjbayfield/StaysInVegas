@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { DayPicker } from 'react-day-picker';
+import { formatDate } from '../utils';
 
 const TRAVELLER_TYPES = [
   { value: '', label: 'Any type' },
@@ -32,11 +33,6 @@ function Stepper({ value, onChange, min = 1, max = 10 }) {
   );
 }
 
-const formatDate = (date) => {
-  if (!date) return '';
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-};
-
 export default function SearchPanel({ onSearch, compact = false }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [dateRange, setDateRange] = useState(undefined);
@@ -57,7 +53,7 @@ export default function SearchPanel({ onSearch, compact = false }) {
   }, [showCalendar]);
 
   const dateLabel = dateRange?.from
-    ? `${formatDate(dateRange.from)}${dateRange.to ? ` — ${formatDate(dateRange.to)}` : ' — Select check-out'}`
+    ? `${formatDate(dateRange.from, 'short')}${dateRange.to ? ` — ${formatDate(dateRange.to, 'short')}` : ' — Select check-out'}`
     : 'Select check-in and check-out';
 
   const handleDateSelect = (range) => {
