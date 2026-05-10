@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import hotels from './data/hotels.json';
+import { filterHotels } from './utils';
 import Header from './components/Header';
 import SearchPanel from './components/SearchPanel';
 import AccommodationList from './components/AccommodationList';
@@ -11,11 +12,7 @@ export default function App() {
   const [searchParams, setSearchParams] = useState(null);
 
   const handleSearch = (params) => {
-    const results = hotels.filter((hotel) => {
-      if (params.travellerType && !hotel.suitableFor.includes(params.travellerType)) return false;
-      if (hotel.maxGuests < params.guests) return false;
-      return true;
-    });
+    const results = filterHotels(hotels, params);
     setSearchParams(params);
     setSearchResults(results);
     setSelectedHotel(null);
