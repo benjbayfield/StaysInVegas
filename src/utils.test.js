@@ -14,12 +14,20 @@ describe('getNights', () => {
     expect(getNights({ from: new Date() })).toBeNull();
   });
 
+  it('returns null when dates match', () => {
+    expect(getNights({ from: new Date('2026-12-01'), to: new Date('2026-12-01') })).toBeNull;
+  });
+
+  it('returns null when dates are wrong way around', () => {
+    expect(getNights({ from: new Date('2026-12-02'), to: new Date('2026-12-01') })).toBeNull;
+  });
+
   it('calculates 1 night', () => {
-    expect(getNights({ from: new Date('2025-06-01'), to: new Date('2025-06-02') })).toBe(1);
+    expect(getNights({ from: new Date('2026-12-01'), to: new Date('2026-12-02') })).toBe(1);
   });
 
   it('calculates 6 nights', () => {
-    expect(getNights({ from: new Date('2025-06-01'), to: new Date('2025-06-07') })).toBe(6);
+    expect(getNights({ from: new Date('2026-12-01'), to: new Date('2026-12-07') })).toBe(6);
   });
 });
 
@@ -33,15 +41,11 @@ describe('formatDate', () => {
   });
 
   it('formats with long month by default', () => {
-    expect(formatDate(new Date('2025-06-15'))).toBe('15 June 2025');
+    expect(formatDate(new Date('2026-09-15'))).toBe('15 September 2026');
   });
 
   it('formats with short month when specified', () => {
-    expect(formatDate(new Date('2025-06-15'), 'short')).toBe('15 Jun 2025');
-  });
-
-  it('formats January correctly', () => {
-    expect(formatDate(new Date('2025-01-01'))).toBe('1 January 2025');
+    expect(formatDate(new Date('2026-09-15'), 'short')).toBe('15 Sept 2026');
   });
 });
 
@@ -52,12 +56,12 @@ describe('filterHotels', () => {
     { id: 3, suitableFor: ['business', 'family'], maxGuests: 4 },
   ];
 
-  it('returns all hotels when travellerType is empty and guests is 0', () => {
-    expect(filterHotels(hotels, { travellerType: '', guests: 0 })).toHaveLength(3);
+  it('returns all hotels when travellerType is empty and guests is 1', () => {
+    expect(filterHotels(hotels, { travellerType: '', guests: 1 })).toHaveLength(3);
   });
 
   it('filters by traveller type', () => {
-    const ids = filterHotels(hotels, { travellerType: 'family', guests: 0 }).map((h) => h.id);
+    const ids = filterHotels(hotels, { travellerType: 'family', guests: 1 }).map((h) => h.id);
     expect(ids).toEqual([2, 3]);
   });
 

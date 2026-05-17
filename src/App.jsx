@@ -51,7 +51,8 @@ export default function App() {
           />
         ) : (
           <div className="text-center py-24 text-slate-400">
-            <p className="text-lg">Search above to find Las Vegas accommodation</p>
+            <p className="text-lg">Search above to find accommodation for your upcoming trip to Las Vegas.<br/>
+              But remember, What Happens in Vegas Stays in Vegas.</p>
           </div>
         )}
       </main>
