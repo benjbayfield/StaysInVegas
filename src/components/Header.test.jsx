@@ -10,7 +10,7 @@ describe('Header', () => {
 
   it('renders the tagline', () => {
     render(<Header />);
-    expect(screen.getByText('Find your perfect Las Vegas stay')).toBeInTheDocument();
+    expect(screen.getByText('For What Happens in Vegas')).toBeInTheDocument();
   });
 
   it('renders as a header landmark', () => {

@@ -1,5 +1,6 @@
 export function getNights(dateRange) {
   if (!dateRange?.from || !dateRange?.to) return null;
+  if (dateRange.from >= dateRange.to) return null;
   return Math.ceil((dateRange.to - dateRange.from) / (1000 * 60 * 60 * 24));
 }
 
